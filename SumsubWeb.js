@@ -9,7 +9,7 @@ class SumsubWeb extends Component {
         const {
             res = {},
             callBack = () => { },
-            tokenPromise = () => { },
+            tokenPromise = () => { return Promise.resolve('token') },
         } = this.props
         return (
             <SumsubWebSdk
@@ -18,12 +18,12 @@ class SumsubWeb extends Component {
                 config={{ lang: res.lang || "zh" }}
                 options={{ addViewportTag: false, adaptIframeHeight: true }}
                 onMessage={(type, payload) => {
-                    callBack(type)
+                    // callBack({status: type})
                 }}
                 onError={(error) => {
-                    callBack(error)
+                    callBack({status: 'Failed'})
                 }}
-                style={{ width: '100%', height: '100%' }}
+                className='sumsub-websdk-container'
             />
         );
     }

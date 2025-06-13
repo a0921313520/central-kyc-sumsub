@@ -1,43 +1,47 @@
 import Sumsub from '@sumsub/react-native-mobilesdk-module';
 
-const sumsubSDK = (res = {}, tokenPromise = () => { }, callBack = () => { }) => {
+let loading = false
+let sdkInstance = null;
+
+const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve('token') }, callBack = () => { }) => {
     const token = res.token || ''
 
-    const expirationHandler = () => {
-        // 这里可以实现token过期时的刷新逻辑，暂时直接返回Promise.resolve(token)
-        return Promise.resolve(token);
-    };
-
     const getSDK = () => {
-        return Sumsub
+        const sdk = Sumsub
             .init(token, tokenPromise)
             .withHandlers({
-                onStatusChanged: (status) => {
-                    if (status.newStatus == 'Failed') {
-                        // 访问过期
-                        callBack(status)
+                onStatusChanged: (res) => {
+                    let status = res.newStatus
+                    if (status.includes('Failed')) {
+                        sdkInstance && sdkInstance.dismiss()
                     }
                 }
             })
             .withLocale(res.lang || 'zh')
-            .withDebug(true)
+            .withDebug(false)
             .build();
+        sdkInstance = sdk;
+        return sdk;
     };
 
-    const startIDCardVerification = async () => {
-        try {
-            const sdk = getSDK();
-            const result = await sdk.launch();
-            callBack(result)
-            console.log('验证结果:', result);
-
-        } catch (error) {
-            callBack(error)
-            console.log('Error:', error);
+    if (loading) { return }
+    try {
+        loading = true
+        const sdk = getSDK()
+        const result = await sdk.launch()
+        let status = result.status
+        if (status.includes('Failed')) {
+            status = 'Failed'
         }
-    };
+        callBack({ status })
 
-    return startIDCardVerification
+    } catch (error) {
+        alert('err')
+    } finally {
+        setTimeout(() => {
+            loading = false
+        }, 2000);
+    }
 }
 
 export default sumsubSDK
