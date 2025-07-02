@@ -18,7 +18,7 @@ class SumsubWeb extends Component {
                 config={{ lang: res.lang || "zh" }}
                 options={{ addViewportTag: false, adaptIframeHeight: true }}
                 onMessage={(type, payload) => {
-                    // callBack({status: type})
+                    callBack({status: type})
                 }}
                 onError={(error) => {
                     callBack({status: 'Failed'})
