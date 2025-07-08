@@ -15,7 +15,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
                     if (status.includes('Failed')) {
                         sdkInstance && sdkInstance.dismiss()
                     }
-                    callBack({ status })
+                    callBack({ status, actionResult: res.actionResult })
                 }
             })
             .withLocale(res.lang || 'zh')
