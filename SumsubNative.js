@@ -15,8 +15,11 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
                     if (status.includes('Failed')) {
                         sdkInstance && sdkInstance.dismiss()
                     }
-                    callBack({ status })
-                }
+                    callBack('onStatusChanged', res)
+                },
+                onEvent: (event) => {
+                    callBack('onEvent', event)
+                },
             })
             .withLocale(res.lang || 'zh')
             .withDebug(false)
@@ -34,7 +37,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
         if (status.includes('Failed')) {
             status = 'Failed'
         }
-        callBack({ status })
+        callBack('onLaunch', result)
 
     } catch (error) {
         alert('err')
