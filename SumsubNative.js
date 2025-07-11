@@ -1,11 +1,13 @@
 import Sumsub from '@sumsub/react-native-mobilesdk-module';
+import { Platform } from "react-native";
 
 let loading = false
 let sdkInstance = null;
+let actionId = ''
 
 const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve('token') }, callBack = () => { }) => {
     const token = res.token || ''
-
+    actionId = ''
     const getSDK = () => {
         const sdk = Sumsub
             .init(token, tokenPromise)
@@ -20,9 +22,26 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
                 onEvent: (event) => {
                     callBack('onEvent', event)
                 },
+                onLog: (event) => {
+                    console.log('onLog ===>', JSON.stringify(event))
+                    try {
+                        const message = event?.message?.toString() || ''
+                        if(Platform.OS === 'android') {
+                            if(message.includes('applicantActionId')) {
+                                const jsonData = JSON.parse(message.replace(/^WebSocketListener\.onMessage: text=/, ''))
+                                actionId = jsonData.payload.applicantActionId
+                            }
+                        } else {
+                            if(message.includes('actionId=')) {
+                                const match = message?.match(/actionId=([^ ]+)/);
+                                actionId = match ? match[1] : null;
+                            }
+                        }
+                    } catch (error) { }
+                },
             })
             .withLocale(res.lang || 'zh')
-            .withDebug(false)
+            .withDebug(true)
             .build();
         sdkInstance = sdk;
         return sdk;
@@ -37,7 +56,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
         if (status.includes('Failed')) {
             status = 'Failed'
         }
-        callBack('onLaunch', result)
+        callBack('onLaunch', {...result, actionId: actionId})
 
     } catch (error) {
         alert('err')
