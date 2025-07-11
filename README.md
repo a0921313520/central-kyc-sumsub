@@ -5,9 +5,9 @@
 
 # web
 - import Sumsub from 'central-kyc-sumsub/SumsubWeb'
-- <Sumsub res={{token: '', lang: 'zh'}} tokenPromise callBack />
+- <Sumsub res={{token: '', lang: 'zh', theme: 'dark'}} tokenPromise callBack /> theme = "dark" | "light",
 - tokenPromise=() => { Promise，return API Promise.resolve(token) } 放get token api Promise，return Promise.resolve(token)，用于刷新token
-- callBack=({status: type, payload}) => {}
+- callBack=(type, res) => {}
 
 # app
 - import Sumsub from 'central-kyc-sumsub/SumsubNative'
