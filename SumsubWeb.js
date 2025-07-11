@@ -1,30 +1,45 @@
 import React, { Component } from 'react';
-import SumsubWebSdk from '@sumsub/websdk-react'
+import snsWebSdk from '@sumsub/websdk';
 class SumsubWeb extends Component {
     constructor(props) {
         super(props);
     }
-
-    render() {
+    componentDidMount() {
+        this.openSumsub()
+    }
+    openSumsub = () => {
         const {
-            res = {},
+            res = { token: 'token', theme: 'dark', lang: 'zh' },
+            tokenPromise = () => { Promise.resolve('newAccessToken') },
             callBack = () => { },
-            tokenPromise = () => { return Promise.resolve('token') },
+
         } = this.props
+        let snsWebSdkInstance = snsWebSdk
+            .init(
+                res.token, tokenPromise,
+            )
+            .withConf({
+                lang: res.lang,
+                theme: res.theme,
+            })
+            .withOptions({ addViewportTag: false, adaptIframeHeight: true })
+            .on("idCheck.onStepCompleted", (payload) => {
+                callBack('onStepCompleted', payload)
+            })
+            .on("idCheck.onError", (error) => {
+                callBack('onError', error)
+            })
+            .on("idCheck.onApplicantActionLoaded", (res) => {
+                callBack('onApplicantActionLoaded', res)
+            })
+            .build();
+
+        snsWebSdkInstance.launch("#sumsub-websdk-container");
+    }
+    render() {
+
         return (
-            <SumsubWebSdk
-                accessToken={res.token || ''}
-                expirationHandler={tokenPromise}
-                config={{ lang: res.lang || "zh" }}
-                options={{ addViewportTag: false, adaptIframeHeight: true }}
-                onMessage={(type, payload) => {
-                    callBack({status: type, payload})
-                }}
-                onError={(error) => {
-                    callBack({status: 'Failed'})
-                }}
-                className='sumsub-websdk-container'
-            />
+            <div id="sumsub-websdk-container"></div>
         );
     }
 }
