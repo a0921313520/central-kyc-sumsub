@@ -32,6 +32,9 @@ class SumsubWeb extends Component {
             .on("idCheck.onApplicantActionLoaded", (res) => {
                 callBack('onApplicantActionLoaded', res)
             })
+            .on("idCheck.onApplicantActionCompleted", (res) => {
+                callBack('onApplicantActionCompleted', res)
+            })
             .build();
 
         snsWebSdkInstance.launch("#sumsub-websdk-container");
