@@ -9,9 +9,12 @@
     "start": "next start",
     "lint": "next lint"
   },
-  "dependencies": {
-    
-  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.28.0",
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1"
+  }
 }
