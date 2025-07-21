@@ -62,11 +62,14 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
                             if(message.includes('applicantActionId')) {
                                 const jsonData = JSON.parse(message.replace(/^WebSocketListener\.onMessage: text=/, ''))
                                 actionId = jsonData.payload.applicantActionId
+                                callBack('onActionIdExtracted', { actionId });
+                                console.log('actionId in sumsub', actionId)
                             }
                         } else {
                             if(message.includes('actionId=')) {
                                 const match = message?.match(/actionId=([^ ]+)/);
                                 actionId = match ? match[1] : null;
+                                callBack('onActionIdExtracted', { actionId });
                             }
                         }
                     } catch (error) { }
