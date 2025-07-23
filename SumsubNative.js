@@ -17,7 +17,8 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             backgroundCommon: getColor("#f5f5f5", "#16151c"),
             bottomSheetBackground: getColor("#ffffff", "#333C4D"),
             bottomSheetHandle: getColor("#D1D6E1", "#FFFFFF"),
-      
+            backgroundNeutral: getColor("#EDEDED", "#2A2E39"),
+
             // === 文字 ===
             contentStrong: getColor("#333C4D", "#FFFFFF"),
             contentWeak: getColor("#94A0B8", "#999999"),
@@ -26,7 +27,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             contentInfo: getColor("#1693E9", "#4DA6FF"),
       
             // === 欄位 ===
-            fieldBackground: getColor("#F6F7F9", "#2A2E39"),
+            fieldBackground: getColor("#EDEDED", "#2A2E39"),
             fieldContent: getColor("#333C4D", "#FFFFFF"),
             fieldPlaceholder: getColor("#94A0B8", "#999999"),
             fieldTint: getColor("#1693E9", "#4DA6FF"),
@@ -51,7 +52,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             alertTint: getColor("#1693E9", "#1485D1"),
             toolbarTint: getColor("#5C6B8A", "#CCCCCC"),
             listSeparator: getColor("#D1D6E1", "#555555"),
-            listSelectedItemBackground: getColor("#F6F7F9", "#2A2E39"),
+            listSelectedItemBackground: getColor("#EDEDED", "#2A2E39"),
           }
         }
       };
