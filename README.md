@@ -11,7 +11,7 @@
 
 # app
 - import Sumsub from 'central-kyc-sumsub/SumsubNative'
-- Sumsub({token: '', lang: 'zh'}, tokenPromise, callBack)
+- Sumsub({token: '', lang: 'zh', theme: ''}, tokenPromise, callBack) theme = "dark" | "light",
 - tokenPromise=() => { Promise，return API Promise.resolve(token) } 放get token api Promise，return Promise.resolve(token)，用于刷新token
 - callBack=(type, res) => {}
 
