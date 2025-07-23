@@ -17,7 +17,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             backgroundCommon: getColor("#f5f5f5", "#16151c"),
             bottomSheetBackground: getColor("#ffffff", "#333C4D"),
             bottomSheetHandle: getColor("#D1D6E1", "#FFFFFF"),
-            backgroundNeutral: getColor("#F6F7F9", "#2A2E39"),
+            backgroundNeutral: getColor("#EDEDED", "#2A2E39"),
       
             // === 文字 ===
             contentStrong: getColor("#333C4D", "#FFFFFF"),
