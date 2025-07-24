@@ -23,33 +23,34 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             contentStrong: getColor("#333C4D", "#FFFFFF"),
             contentWeak: getColor("#94A0B8", "#999999"),
             contentNeutral: getColor("#5C6B8A", "#CCCCCC"),
-            contentLink: getColor("#1693E9", "#4DA6FF"),
-            contentInfo: getColor("#1693E9", "#4DA6FF"),
+            contentLink: getColor("#00A826", "#00A826"),
+            contentInfo: getColor("#00A826", "#00A826"),
+            contentSuccess: getColor("#00A826", "#00A826"),          
       
             // === 欄位 ===
             fieldBackground: getColor("#EDEDED", "#2B2D33"),
             fieldContent: getColor("#333C4D", "#FFFFFF"),
             fieldPlaceholder: getColor("#94A0B8", "#999999"),
-            fieldTint: getColor("#1693E9", "#4DA6FF"),
+            fieldTint: getColor("#00A826", "#00A826"),
       
             // === Primary 按鈕 ===
             primaryButtonBackground: getColor("#00A826", "#00A826"),
             primaryButtonContent: getColor("#FFFFFF", "#FFFFFF"),
             primaryButtonBackgroundDisabled: getColor("#A6DAB3", "#4C6E57"),
             primaryButtonContentDisabled: getColor("#444444", "#AAAAAA"),
-            primaryButtonBackgroundHighlighted: getColor("#008F20", "#008F20"),
             primaryButtonContentHighlighted: getColor("#FFFFFF", "#FFFFFF"),
+            primaryButtonBackgroundHighlighted: getColor("#008F20", "#008F20"),
       
             // === Secondary 按鈕 ===
-            secondaryButtonBackground: getColor("transparent", "transparent"),
-            secondaryButtonContent: getColor("#1693E9", "#4DA6FF"),
-            secondaryButtonContentDisabled: getColor("#A1D2F7", "#777777"),
-            secondaryButtonContentHighlighted: getColor("#1693E9", "#4DA6FF"),
-            secondaryButtonBackgroundHighlighted: getColor("#E8F4FD", "#072F4B"),
+            secondaryButtonBackground: getColor("#f5f5f5", "#16151c"),
+            secondaryButtonContent: getColor("#00A826", "#00A826"),  
+            secondaryButtonContentDisabled: getColor("#A6DAB3", "#777777"),
+            secondaryButtonContentHighlighted: getColor("#008F20", "#008F20"),
+            secondaryButtonBackgroundHighlighted: getColor("#E6F8EC", "#0F2F1A"),
       
             // === 導覽列 / 提示 / List ===
             navigationBarItem: getColor("#94A0B8", "#AAAAAA"),
-            alertTint: getColor("#1693E9", "#1485D1"),
+            alertTint: getColor("#00A826", "#00A826"),
             toolbarTint: getColor("#5C6B8A", "#CCCCCC"),
             listSeparator: getColor("#D1D6E1", "#555555"),
             listSelectedItemBackground: getColor("#EDEDED", "#2B2D33"),
