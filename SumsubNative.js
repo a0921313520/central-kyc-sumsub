@@ -43,7 +43,7 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
             primaryButtonBackgroundHighlighted: getColor("#008F20", "#008F20"),
       
             // === Secondary 按鈕 ===
-            secondaryButtonBackground: getColor("transparent", "transparent"),
+            secondaryButtonBackground: getColor("#f5f5f5", "#16151c"),
             secondaryButtonContent: getColor("#00A826", "#00A826"),  
             secondaryButtonContentDisabled: getColor("#A6DAB3", "#777777"),
             secondaryButtonContentHighlighted: getColor("#008F20", "#008F20"),
