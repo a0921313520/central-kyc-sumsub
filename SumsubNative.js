@@ -9,8 +9,9 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
     const token = res.token || ''
     actionId = ''
 
+    const styleColor = res.styleColor || false
     const getColor = (light, dark) => res.theme === 'light' ? light : dark;
-    const theme = {
+    let theme = {
         universal: {
           colors: {
             // === 背景 ===
@@ -57,6 +58,13 @@ const sumsubSDK = async (res = {}, tokenPromise = () => { return Promise.resolve
           }
         }
     };
+
+    if(styleColor) {
+        const list = Object.keys(styleColor)
+        list.forEach((i) => {
+            theme.universal.colors[i] = styleColor[i];
+        });
+    }
 
     const getSDK = () => {
         const sdk = Sumsub
